@@ -1,14 +1,36 @@
-from flask import Flask
+from flask import Flask, render_template
+
 app = Flask(__name__)
+
+posts = [
+    {
+        'author': 'Vaibhav Oza',
+        'title': 'Blog Post 1',
+        'content': 'First Post Content',
+        'date_posted': 'January 25, 2021'
+    },
+    {
+        'author': 'Corey Schafer',
+        'title': 'Blog Post 2',
+        'content': 'Second Post Content',
+        'date_posted': 'April 20, 2018'
+    },
+    {
+        'author': 'Jame Doe',
+        'title': 'Blog Post 3',
+        'content': 'Third Post Content',
+        'date_posted': 'April 21, 2018'
+    }
+]
 
 @app.route("/")
 @app.route("/home")
 def home():
-    return "<h1>Home Page</h1>"
+    return render_template('home.html', posts=posts)
 
 @app.route("/about")
 def about():
-    return "<h1>About Page</h1>"
+    return render_template('about.html')
 
 # set: for windows , export for linux
 # set FLASK_APP=flaskblog.py
